@@ -83,3 +83,21 @@ public class Student {
     }
 
 }
+
+public class Course {
+    private String coursename;
+    private String courseID;
+
+    public void setCourseID(String courseID) {
+        this.courseID = courseID;
+    }
+
+    public void setCoursename(String coursename) {
+        this.coursename = coursename;
+    }
+}
+public enum Gender {
+
+    MALE , FEMALE , OTHER;
+}
+
