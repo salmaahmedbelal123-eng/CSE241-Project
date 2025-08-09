@@ -1,5 +1,8 @@
+package models.users;
 import java.time.LocalDate;
 import java.util.Scanner;
+
+
 public class Student {
     private String username;
     private String password;
@@ -13,7 +16,7 @@ public class Student {
     int size1;
     String [] answers = new String[size1];
     private int size;
-    private Course [] courses = new Course[size];
+    // private Course [] courses = new Course[size];
 
 
     public Student(String username,String password, double balance , Gender gender, int birthday, int birthmonth , int birthyear ,String adrress, LocalDate birth){
@@ -28,9 +31,8 @@ public class Student {
         this.birth = birth;
     }
 
-    public void setAdrress(String adrress) {
-        this.adrress = adrress;
-    }
+    public String getAdress
+    public void setAdrress(String adrress) {this.adrress = adrress;}
 
     public void setBalance(double balance) {
         this.balance = balance;
@@ -40,7 +42,14 @@ public class Student {
         this.birthday = birthday;
     }
     
-
+    /* here the student should choose from a list of courses, not make them up
+     * TODO:
+     * - Limit max no. of courses to 8
+     * - Display a list of Available Courses
+     * - add validation to check if student has enough money to enroll in course (i'll make the wallet class so you can use its methods)
+     * 
+     * comments by abdullah
+     */
     public void enrollcourse(){
 
         Scanner scanner = new Scanner(System.in);
@@ -84,18 +93,18 @@ public class Student {
 
 }
 
-public class Course {
-    private String coursename;
-    private String courseID;
+// public class Course {
+//     private String coursename;
+//     private String courseID;
 
-    public void setCourseID(String courseID) {
-        this.courseID = courseID;
-    }
+//     public void setCourseID(String courseID) {
+//         this.courseID = courseID;
+//     }
 
-    public void setCoursename(String coursename) {
-        this.coursename = coursename;
-    }
-}
+//     public void setCoursename(String coursename) {
+//         this.coursename = coursename;
+//     }
+// }
 public enum Gender {
 
     MALE , FEMALE , OTHER;

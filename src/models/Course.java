@@ -1,21 +1,19 @@
-///*
-// * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-// * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
-// */
-
-package LMS;
+package models;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Course implements CrudOperations<Course>, displayInfo {
+import interfaces.CrudOperations;
+import interfaces.displayable;
+
+import data.Database;
+
+public class Course implements CrudOperations<Course>, displayable {
     private CategoryType type;
     private double price;
     protected String id;
     protected String name;
-
-    
-    private static List<Course> courses = new ArrayList<>();
+    // private static List<Course> courses = new ArrayList<>();
 
     public Course() {}
 
@@ -26,21 +24,12 @@ public class Course implements CrudOperations<Course>, displayInfo {
         this.price = price;
     }
 
-    public void setType(CategoryType type) {
-        this.type = type;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public CategoryType getType() {
-        return type;
-    }
-
-    public double getPrice() {
-        return price;
-    }
+    // Getters & Setters
+    public CategoryType getType() {return type;}
+    public void setType(CategoryType type) {this.type = type;}
+    
+    public double getPrice() {return price;}
+    public void setPrice(double price) {this.price = price;}
 
     @Override
     public void displayInfo() {
@@ -53,22 +42,22 @@ public class Course implements CrudOperations<Course>, displayInfo {
 
     @Override
     public void add(Course item) {
-        courses.add(item);
+        Database.courses.add(item);
         System.out.println("Course added successfully!");
     }
 
     @Override
     public Course getById(int id) {
         // البحث بالـ index وليس بالـ String ID
-        if (id >= 0 && id < courses.size()) {
-            return courses.get(id);
+        if (id >= 0 && id < Database.courses.size()) {
+            return Database.courses.get(id);
         }
         System.out.println("Course not found!");
         return null;
     }
 
     public Course getByStringId(String courseId) {
-        for (Course c : courses) {
+        for (Course c : Database.courses) {
             if (c.id.equals(courseId)) {
                 return c;
             }
@@ -79,14 +68,14 @@ public class Course implements CrudOperations<Course>, displayInfo {
 
     @Override
     public List<Course> getAll() {
-        return new ArrayList<>(courses);
+        return new ArrayList<>(Database.courses);
     }
 
     @Override
     public void update(Course item) {
-        for (int i = 0; i < courses.size(); i++) {
-            if (courses.get(i).id.equals(item.id)) {
-                courses.set(i, item);
+        for (int i = 0; i < Database.courses.size(); i++) {
+            if (Database.courses.get(i).id.equals(item.id)) {
+                Database.courses.set(i, item);
                 System.out.println("Course updated successfully!");
                 return;
             }
@@ -96,8 +85,8 @@ public class Course implements CrudOperations<Course>, displayInfo {
 
     @Override
     public void delete(int index) {
-        if (index >= 0 && index < courses.size()) {
-            courses.remove(index);
+        if (index >= 0 && index < Database.courses.size()) {
+            Database.courses.remove(index);
             System.out.println("Course deleted successfully!");
         } else {
             System.out.println("Invalid course index!");
@@ -105,7 +94,7 @@ public class Course implements CrudOperations<Course>, displayInfo {
     }
 
     public void deleteByStringId(String courseId) {
-        courses.removeIf(c -> c.id.equals(courseId));
+        Database.courses.removeIf(c -> c.id.equals(courseId));
         System.out.println("Course deleted if existed!");
     }
 }

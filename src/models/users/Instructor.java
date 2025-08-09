@@ -1,3 +1,9 @@
+package models.users;
+import java.util.ArrayList;
+import java.util.List;
+
+import models.Course;
+
 public class Instructor {
     private String username;
     private String password;
@@ -45,12 +51,12 @@ public class Instructor {
             course.setInstructor(this);
         }
     }
-    public void createAssignment(Course course, String title, String deadline) {
-        if (teachingCourses.contains(course)) {
-            Assignment assignment = new Assignment(title, deadline);
-            course.addAssignment(assignment);
-        }
-    }
+    // public void createAssignment(Course course, String title, String deadline) {
+    //     if (teachingCourses.contains(course)) {
+    //         Assignment assignment = new Assignment(title, deadline);
+    //         course.addAssignment(assignment);
+    //     }
+    // }
     public void listMyCourses() {
         System.out.println("Courses taught by " + username + ":");
         for (Course c : teachingCourses) {
@@ -67,3 +73,4 @@ public class Instructor {
             System.out.println("This course is not taught by the instructor.");
         }
     }
+}
