@@ -25,5 +25,26 @@ public Admin(String username, String password, String dateOfBirth, String role, 
     public int getWorkingHours() {
         return workingHours;
     }
+  public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public void setWorkingHours(int workingHours) {
+        this.workingHours = workingHours;
+    }
+ @Override
+    public String toString() {
+        return "Admin{" +
+                "username='" + username + '\'' +
+                ", role='" + role + '\'' +
+                ", workingHours=" + workingHours +
+                ", dateOfBirth='" + dateOfBirth + '\'' +
+                '}';
+    }
+}
 
 
