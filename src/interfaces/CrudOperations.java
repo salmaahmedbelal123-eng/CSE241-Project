@@ -9,8 +9,8 @@ import java.util.List;
 
 public interface CrudOperations<T> {
     void add(T item);
-    T getById(int id);
+    T getById(String id);
     List<T> getAll();
     void update(T item);
-    void delete(int id);
+    void delete(String id);
 }

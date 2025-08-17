@@ -3,9 +3,8 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 
-public class Student {
-    private String username;
-    private String password;
+public class Student extends User{
+
     private double balance;
     private int birthday;
     private int birthmonth;
@@ -15,15 +14,11 @@ public class Student {
     Gender gender;
     int size1;
     String [] answers = new String[size1];
-    private int size;
-    // private Course [] courses = new Course[size];
 
 
     public Student(String username,String password, double balance , Gender gender, int birthday, int birthmonth , int birthyear ,String adrress, LocalDate birth){
+        super(username, password, adrress);
         this.balance = balance;
-        this.password = password;
-        this.username = username;
-        this.adrress = adrress;
         this.gender = gender;
         this.birthday = birthday;
         this.birthmonth = birthmonth;
@@ -31,7 +26,7 @@ public class Student {
         this.birth = birth;
     }
 
-    public String getAdress
+    public String getAdress(){return adrress;}
     public void setAdrress(String adrress) {this.adrress = adrress;}
 
     public void setBalance(double balance) {
@@ -41,6 +36,7 @@ public class Student {
     public void setBirthday(int birthday) {
         this.birthday = birthday;
     }
+
     
     /* here the student should choose from a list of courses, not make them up
      * TODO:
@@ -50,30 +46,30 @@ public class Student {
      * 
      * comments by abdullah
      */
-    public void enrollcourse(){
+    // public void enrollcourse(){
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("How many courses do you want to take : ");
-        size = scanner.nextInt();
+    //     Scanner scanner = new Scanner(System.in);
+    //     System.out.print("How many courses do you want to take : ");
+    //     size = scanner.nextInt();
 
-        for (int i = 0; i < size ; i++){
-            courses[i] = new Course();
-        }
+    //     for (int i = 0; i < size ; i++){
+    //         courses[i] = new Course();
+    //     }
 
-        for (int i = 0; i < size ; i++){
-            System.out.print("Enter your Course name : ");
-            String name = scanner.nextLine();
-            courses[i].setCoursename(name);
+    //     for (int i = 0; i < size ; i++){
+    //         System.out.print("Enter your Course name : ");
+    //         String name = scanner.nextLine();
+    //         courses[i].setCoursename(name);
 
-            System.out.print("Enter your Course ID : ");
-            String ID = scanner.nextLine();
-            courses[i].setCourseID(ID);
+    //         System.out.print("Enter your Course ID : ");
+    //         String ID = scanner.nextLine();
+    //         courses[i].setCourseID(ID);
 
-            System.out.println("You have enrolled course number #" + i);
-        }
+    //         System.out.println("You have enrolled course number #" + i);
+    //     }
 
-        scanner.close();
-    }
+    //     scanner.close();
+    // }
     void submission(int size1){
 
         this.size1 = size1;
@@ -93,19 +89,7 @@ public class Student {
 
 }
 
-// public class Course {
-//     private String coursename;
-//     private String courseID;
-
-//     public void setCourseID(String courseID) {
-//         this.courseID = courseID;
-//     }
-
-//     public void setCoursename(String coursename) {
-//         this.coursename = coursename;
-//     }
-// }
-public enum Gender {
+enum Gender {
 
     MALE , FEMALE , OTHER;
 }

@@ -6,14 +6,32 @@ import java.util.List;
 import interfaces.CrudOperations;
 import interfaces.displayable;
 
-import data.Database;
-
 public class Course implements CrudOperations<Course>, displayable {
     private CategoryType type;
     private double price;
     protected String id;
     protected String name;
-    // private static List<Course> courses = new ArrayList<>();
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    
+
+    
+    private static List<Course> courses = new ArrayList<>();
 
     public Course() {}
 
@@ -24,12 +42,21 @@ public class Course implements CrudOperations<Course>, displayable {
         this.price = price;
     }
 
-    // Getters & Setters
-    public CategoryType getType() {return type;}
-    public void setType(CategoryType type) {this.type = type;}
-    
-    public double getPrice() {return price;}
-    public void setPrice(double price) {this.price = price;}
+    public void setType(CategoryType type) {
+        this.type = type;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public CategoryType getType() {
+        return type;
+    }
+
+    public double getPrice() {
+        return price;
+    }
 
     @Override
     public void displayInfo() {
@@ -42,22 +69,23 @@ public class Course implements CrudOperations<Course>, displayable {
 
     @Override
     public void add(Course item) {
-        Database.courses.add(item);
+        courses.add(item);
         System.out.println("Course added successfully!");
     }
 
     @Override
-    public Course getById(int id) {
-        // البحث بالـ index وليس بالـ String ID
-        if (id >= 0 && id < Database.courses.size()) {
-            return Database.courses.get(id);
+    public Course getById(String id) {
+        for(Course course:courses){
+        if(course.getId().equals(id)){
+            
+        }
         }
         System.out.println("Course not found!");
         return null;
     }
 
     public Course getByStringId(String courseId) {
-        for (Course c : Database.courses) {
+        for (Course c : courses) {
             if (c.id.equals(courseId)) {
                 return c;
             }
@@ -68,14 +96,14 @@ public class Course implements CrudOperations<Course>, displayable {
 
     @Override
     public List<Course> getAll() {
-        return new ArrayList<>(Database.courses);
+        return new ArrayList<>(courses);
     }
 
     @Override
     public void update(Course item) {
-        for (int i = 0; i < Database.courses.size(); i++) {
-            if (Database.courses.get(i).id.equals(item.id)) {
-                Database.courses.set(i, item);
+        for (int i = 0; i < courses.size(); i++) {
+            if (courses.get(i).id.equals(item.id)) {
+                courses.set(i, item);
                 System.out.println("Course updated successfully!");
                 return;
             }
@@ -84,17 +112,19 @@ public class Course implements CrudOperations<Course>, displayable {
     }
 
     @Override
-    public void delete(int index) {
-        if (index >= 0 && index < Database.courses.size()) {
-            Database.courses.remove(index);
-            System.out.println("Course deleted successfully!");
-        } else {
-            System.out.println("Invalid course index!");
+  public void delete(String id) {
+    int index = -1; // نبدأ بـ -1 عشان نعرف لو ملقيناش الكورس
+    for (int i = 0; i < courses.size(); i++) {
+        if (courses.get(i).getId().equals(id)) {
+            index = i;
+            break; // وقفنا أول ما لقينا الكورس
         }
     }
-
-    public void deleteByStringId(String courseId) {
-        Database.courses.removeIf(c -> c.id.equals(courseId));
-        System.out.println("Course deleted if existed!");
+    if (index != -1) {
+        courses.remove(index);
+        System.out.println("Course deleted successfully!");
+    } else {
+        System.out.println("Invalid course id!");
     }
+  }
 }

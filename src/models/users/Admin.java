@@ -1,25 +1,22 @@
 package models.users;
 
-public class Admin {
-    private String username;
-    private String password;
-    private String dateOfBirth;
-    private String role;
-    private int workingHours;
+public class Admin extends User {
 
-    public Admin(String username, String password, String dateOfBirth, String role, int workingHours) {
-            this.username = username;
-            this.password = password;
-            this.dateOfBirth = dateOfBirth;
-            this.role = role;
-            this.workingHours = workingHours;
-    }
-        //Getters
-        public String getUsername() {return username;}
-        public String getPassword() {return password;}
-        public String getDateOfBirth() {return dateOfBirth;}
+        private String role;
+        private int workingHours;
+
+        public Admin(String username, String password, String dateOfBirth, String role, int workingHours) {
+                super(username, password, dateOfBirth);
+                this.role = role;
+                this.workingHours = workingHours;
+        }
+
+        // Setters & Getters
+
         public String getRole() {return role;}
-        public int getWorkingHours() {return workingHours;}
+        public void setRole(String role) {this.role = role;}
 
-    
+        public int getWorkingHours() {return workingHours;}
+        public void setWorkingHours(int workingHours) {this.workingHours = workingHours;}
+
 }

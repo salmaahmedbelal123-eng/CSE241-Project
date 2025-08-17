@@ -1,76 +1,16 @@
 package models.users;
-import java.util.ArrayList;
-import java.util.List;
 
-import models.Course;
-
-public class Instructor {
-    private String username;
-    private String password;
-    private String dateOfBirth;
+public class Instructor extends User {
+    
     private String specialization;
-    private List<Course> teachingCourses;
+
 
     public Instructor(String username, String password, String dateOfBirth, String specialization) {
-        this.username = username;
-        this.password = password;
-        this.dateOfBirth = dateOfBirth;
-        this.specialization = specialization;
-        this.teachingCourses = new ArrayList<>();
-    }
-    public String getUsername() {
-        return username;
-    }
-    public void setUsername(String username) {
-        this.username = username;
-    }
-    public String getPassword() {
-        return password;
-    }
-    public void setPassword(String password) {
-        this.password = password;
-    }
-    public String getDateOfBirth() {
-        return dateOfBirth;
-    }
-    public void setDateOfBirth(String dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-    public String getSpecialization() {
-        return specialization;
-    }
-    public void setSpecialization(String specialization) {
+        super(username, password, dateOfBirth);
         this.specialization = specialization;
     }
-    public List<Course> getTeachingCourses() {
-        return teachingCourses;
-    }
-    public void assignCourse(Course course) {
-        if (!teachingCourses.contains(course) && course.isAvailable()) {
-            teachingCourses.add(course);
-            course.setInstructor(this);
-        }
-    }
-    // public void createAssignment(Course course, String title, String deadline) {
-    //     if (teachingCourses.contains(course)) {
-    //         Assignment assignment = new Assignment(title, deadline);
-    //         course.addAssignment(assignment);
-    //     }
-    // }
-    public void listMyCourses() {
-        System.out.println("Courses taught by " + username + ":");
-        for (Course c : teachingCourses) {
-            System.out.println("- " + c.getCourseName());
-        }
-    }
-    public void showStudentsInCourse(Course course) {
-        if (teachingCourses.contains(course)) {
-            System.out.println("Students enrolled in " + course.getCourseName() + ":");
-            for (Student student : course.getEnrolledStudents()) {
-                System.out.println("- " + student.getUsername());
-            }
-        } else {
-            System.out.println("This course is not taught by the instructor.");
-        }
-    }
+
+    // Getters and Setters
+    public String getSpecialization() { return specialization; }
+    public void setSpecialization(String specialization) { this.specialization = specialization; }
 }

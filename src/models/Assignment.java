@@ -3,11 +3,16 @@ package models;
 import java.time.LocalDate;
 
 public class Assignment {
-    public enum AssignmentType {ELECTIVE,PROJECT,QUIZ}
     private String id;
     private String title;
-    private AssignmentType type;
+    AssignmentType type;
     private LocalDate dueDate;
+
+     public Assignment(String id, String title) {
+        this.id = id;
+        this.title = title;
+       
+    }
 
     public Assignment(String id, String title, AssignmentType type, LocalDate dueDate) {
         this.id = id;
